@@ -3,6 +3,11 @@ import { CSSTransition } from "react-transition-group";
 import { TransitionGroup } from "react-transition-group";
 import PostItem from "./PostItem";
 const PostList = ({posts, title, remove}) => {
+  if(!posts.length){
+    return(
+      <h1 style={{ textAlign: "center" }}>Посты не найдены</h1>
+    )
+  }
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>{title}</h1>
