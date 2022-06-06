@@ -6,6 +6,7 @@ import PostFilter from "./components/PostFilter";
 import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
 import MyButton from "./components/UI/button/MyButton";
+import Loader from "./components/UI/Loader/Loader";
 import MyModal from "./components/UI/MyModal/MyModal";
 import "./styles/App.css";
 
@@ -26,9 +27,12 @@ function App() {
 
   async function fetchPosts() {
     setIsPostsLoading(true);
-    const posts = await PostService.getAll();
+    setTimeout( async() => {
+      const posts = await PostService.getAll();
     setPosts(posts);
     setIsPostsLoading(false);
+    }, 1000)
+    
   }
   //Get post from child component
   const removePost = (post) => {
@@ -49,12 +53,16 @@ function App() {
 
       <hr style={{ margin: "15px 0" }} />
       <PostFilter filter={filter} setFilter={setFilter} />
-
-      <PostList
+      {isPostsLoading
+        ? <Loader />
+        : <PostList
         remove={removePost}
         posts={sortedAndSearchedPosts}
         title="Посты про js"
       />
+
+      }
+      
     </div>
   );
 }
