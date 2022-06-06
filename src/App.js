@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import PostFilter from "./components/PostFilter";
 import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
+import MyModal from "./components/UI/MyModal/MyModal";
 import "./styles/App.css";
 
 function App() {
@@ -35,7 +36,10 @@ function App() {
 
   return (
     <div className="App">
+      <MyModal>
       <PostForm create={createPost} />
+      </MyModal>
+      
       <hr style={{margin: '15px 0'}}/>
       <PostFilter 
         filter={filter}
