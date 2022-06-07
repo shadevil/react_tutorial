@@ -10,6 +10,7 @@ import MyButton from "./components/UI/button/MyButton";
 import Loader from "./components/UI/Loader/Loader";
 import MyModal from "./components/UI/MyModal/MyModal";
 import "./styles/App.css";
+import { getPageCount } from "./utils/pages.js";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -20,17 +21,19 @@ function App() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
 
+  //ДЗ: Использовать useMemo чтобы массив не пересчитывался на каждом рендере 
   let pagesArray = [];
-  for(let i = 0; i < totalPages; i++){
-    pagesArray.push(i+1);
+  for (let i = 0; i < totalPages; i++) {
+    pagesArray.push(i + 1);
   }
   const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
     const response = await PostService.getAll(limit, page);
     setPosts(response.data);
     const totalCount = response.headers["x-total-count"];
     setTotalPages(getPageCount(totalCount, limit));
-  });
 
+  });
+  console.log(totalPages);
   useEffect(() => {
     fetchPosts();
   }, []);
