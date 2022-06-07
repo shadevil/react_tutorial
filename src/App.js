@@ -54,7 +54,7 @@ function App() {
       <hr style={{ margin: "15px 0" }} />
       <PostFilter filter={filter} setFilter={setFilter} />
       {isPostsLoading
-        ? <Loader />
+        ? <div style={{display: "flex", justifyContent: "center", marginTop: "50px"}}><Loader /></div>
         : <PostList
         remove={removePost}
         posts={sortedAndSearchedPosts}
