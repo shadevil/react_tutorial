@@ -38,3 +38,15 @@
     transform: translateX(-1200px);
     transition: all 300ms ease-in;
   }
+
+  .page__wrapper{
+    margin-top: 30px;
+    display: flex;
+  }
+
+  .page{
+    padding: 10px;
+    border: 1px solid slateblue;
+    color: slateblue;
+    cursor: pointer;
+  }
